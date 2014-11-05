@@ -37,8 +37,17 @@ function Dispatcher() {
 
 
 platform.provider('dispatcher', function () {
+    var dispatcher = new Dispatcher();
+
     this.$get = function () {
-        return new Dispatcher();
-    }
+        return {
+            registerEvent: function (eventName, eventHandler) {
+                dispatcher.registerEvent(eventName, eventHandler);
+            },
+            fireEvent: function(eventName, eventData) {
+                dispatcher.fireEvent(eventName, eventData);
+            }
+        };
+    };
 });
 
