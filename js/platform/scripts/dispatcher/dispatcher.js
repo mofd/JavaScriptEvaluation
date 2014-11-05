@@ -9,10 +9,16 @@ function Dispatcher() {
             throw new Error("event name nicht vorhanden");
         } else if (eventHandler === undefined) {
             throw new Error("event handler nicht vorhanden");
-        } else if (eventMap[eventName] === undefined) {
-            eventMap[eventName] = [eventHandler];
+        } else if (typeof eventHandler == 'function') {
+            if (eventMap[eventName] === undefined) {
+                eventMap[eventName] = [eventHandler];
+            } else {
+                eventMap[eventName].push(eventHandler);
+            }
         } else {
-            eventMap[eventName].push(eventHandler);
+            var message = "eventHandler " + eventName + " ist keine funktion";
+            console.warn(message);
+            throw new Error(message);
         }
     };
 
@@ -21,11 +27,12 @@ function Dispatcher() {
         if (eventHandlerArray === undefined) {
             console.warn("kein event handler fuer " + eventName + " gefunden");
         } else if (eventHandlerArray instanceof Array) {
-            for (var eventHandler in eventHandlerArray) {
-                if (eventHandler.handleEvent === undefined) {
-                    console.warn("eventHandler " + eventName + " hat keine methode handleEvent");
+            for (var handlerIndex in eventHandlerArray) {
+                var eventHandler = eventHandlerArray[handlerIndex];
+                if (typeof eventHandler == 'function') {
+                    eventHandler(eventData);
                 } else {
-                    eventHandler.handleEvent(eventData);
+                    console.warn("eventHandler " + eventName + " ist keine funktion");
                 }
             }
         } else {
@@ -44,7 +51,7 @@ platform.provider('dispatcher', function () {
             registerEvent: function (eventName, eventHandler) {
                 dispatcher.registerEvent(eventName, eventHandler);
             },
-            fireEvent: function(eventName, eventData) {
+            fireEvent: function (eventName, eventData) {
                 dispatcher.fireEvent(eventName, eventData);
             }
         };

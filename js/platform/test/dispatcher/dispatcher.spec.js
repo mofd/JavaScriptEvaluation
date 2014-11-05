@@ -2,17 +2,37 @@ describe("A dispatcher test", function () {
 
     beforeEach(module('platform'));
 
-    var handler = function(){
-        this.internalEventData = "";
-
-        this.handleEvent = function(eventData){
-            this.internalEventData = eventData;
-        }
+    var internalEventData = null;
+    var handler = function (eventData) {
+        console.log("event abgefeuert");
+        internalEventData = eventData;
     };
 
-    it("register event", inject(function (dispatcher) {
-        dispatcher.registerEvent("event", handler());
-//        expect(dispatcher.getApiKey()).toBe(exampleApiKey);
+    beforeEach(function(){
+       internalEventData = null;
+    });
+
+    it("register and fire event", inject(function (dispatcher) {
+        dispatcher.registerEvent("event", handler);
+
+        var eventData = new Object();
+        dispatcher.fireEvent("event", eventData);
+
+        expect(internalEventData).toBe(eventData);
     }));
 
+    it("register object instead function", inject(function (dispatcher) {
+        try {
+            dispatcher.registerEvent("event", new Object());
+            throw new Error("test failed")
+        } catch (e) {
+            expect(e.message).toBe("eventHandler event ist keine funktion");
+        }
+    }));
+
+    it("fire unknown event", inject(function (dispatcher) {
+        dispatcher.fireEvent("foo", new Object());
+
+        expect(internalEventData).toBeNull();
+    }));
 });
