@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="CheckStyle-IDEA">
+    <option name="configuration">
+      <map>
+        <entry key="location-0" value="CLASSPATH:/sun_checks.xml:The default CheckStyle rules" />
+      </map>
+    </option>
+  </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
     <resourceExtensions />
@@ -26,6 +33,11 @@
   <component name="DependencyValidationManager">
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
+  <component name="EclipseCodeFormatter">
+    <option name="defaultSettings" value="true" />
+    <option name="id" value="1415349020693" />
+    <option name="name" value="default" />
+  </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
@@ -50,7 +62,7 @@
     <version value="1.0" />
   </component>
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{angular.js, karma-jasmin}" />
+    <file url="PROJECT" libraries="{angularjs, jQuery}" />
   </component>
   <component name="Palette2">
     <group name="Swing">
@@ -295,6 +307,36 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+  </component>
+  <component name="libraryTable">
+    <library name="angularjs" type="javaScript">
+      <properties>
+        <sourceFilesUrls>
+          <item url="file://C:/dev/JS/libs/angular.js" />
+          <item url="file://C:/dev/JS/libs/angular-mocks.js" />
+          <item url="file://C:/dev/JS/libs/angular-route.js" />
+        </sourceFilesUrls>
+      </properties>
+      <CLASSES>
+        <root url="file://C:/dev/JS/libs/angular.js" />
+        <root url="file://C:/dev/JS/libs/angular-mocks.js" />
+        <root url="file://C:/dev/JS/libs/angular-route.js" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="jQuery" type="javaScript">
+      <properties>
+        <sourceFilesUrls>
+          <item url="file://C:/dev/JS/libs/jquery.js" />
+        </sourceFilesUrls>
+      </properties>
+      <CLASSES>
+        <root url="file://C:/dev/JS/libs/jquery.js" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
   </component>
   <component name="masterDetails">
     <states>
