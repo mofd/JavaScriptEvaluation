@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="de">
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body ng-app="app">
+
+<fieldset title="ModuleX">
+	<div ng-controller="ModuleXCtrl">
+		<p>
+			<label for="eventNameX">EventName:</label>
+			<input id="eventNameX" type="text" ng-model="eventName"/>
+			<label for="messageX">Message</label>
+			<input id="messageX" type="text" ng-model="message"/>
+			<button ng-click="fireEvent()">Schicken</button>
+		</p>
+
+		<label>Empfangene Message: </label><label>{{receivedMessage}}</label>
+	</div>
+</fieldset>
+
+<fieldset title="ModuleY" name="ModuleY">
+	<div ng-controller="ModuleYCtrl">
+		<p>
+			<label for="eventNameY">EventName:</label>
+			<input id="eventNameY" type="text" ng-model="eventName"/>
+			<label for="messageY">Message</label>
+			<input id="messageY" type="text" ng-model="message"/>
+			<button ng-click="fireEvent()">Schicken</button>
+		</p>
+
+		<label>Empfangene Message: </label><label>{{receivedMessage}}</label>
+	</div>
+</fieldset>
+
+<script src="js/lib/angular/angular.js"></script>
+<script src="js/platform/scripts/platform.js"></script>
+<script src="js/platform/scripts/dispatcher/dispatcher.js"></script>
+<script src="js/modules/moduleX/scripts/moduleX.js"></script>
+<script src="js/modules/moduleY/scripts/moduleY.js"></script>
+<script src="js/app/scripts/app.js"></script>
+</body>
+</html>

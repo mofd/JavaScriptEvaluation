@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="de">
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body ng-app="moduleX">
+
+<div ng-controller="ModuleXCtrl">
+	<p>
+		<label for="eventName">EventName:</label>
+		<input id="eventName" type="text" ng-model="eventName"/>
+		<label for="message">Message</label>
+		<input id="message" type="text" ng-model="message"/>
+		<button ng-click="fireEvent()">Schicken</button>
+	</p>
+
+	<label>Empfangene Message: </label><label>{{receivedMessage}}</label>
+</div>
+
+<script src="js/lib/angular/angular.js"></script>
+<script src="js/platform/scripts/platform.js"></script>
+<script src="js/platform/scripts/dispatcher/dispatcher.js"></script>
+<script src="js/modules/moduleX/scripts/moduleX.js"></script>
+</body>
+</html>

@@ -197,6 +197,9 @@
   </component>
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/js/app/app.iml" filepath="$PROJECT_DIR$/js/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/js/lib/lib.iml" filepath="$PROJECT_DIR$/js/lib/lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/js/modules/modules.iml" filepath="$PROJECT_DIR$/js/modules/modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/js/platform/platform.iml" filepath="$PROJECT_DIR$/js/platform/platform.iml" />
     </modules>
   </component>
