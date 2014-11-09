@@ -10,7 +10,7 @@ moduleX.controller("ModuleXCtrl", function ($scope, dispatcher) {
     dispatcher.registerEvent("x", function (message){
         var info = "(x) Message : " + message;
         console.log(info);
-        window.confirm(info);
+        //window.confirm(info);
         $scope.receivedMessage = message;
     });
 

@@ -10,7 +10,7 @@ moduleY.controller("ModuleYCtrl", function ($scope, dispatcher) {
     dispatcher.registerEvent("y", function (message){
         var info = "(y) Message : " + message;
         console.log(info);
-        window.confirm(info);
+        //window.confirm(info);
         $scope.receivedMessage = message;
     });
 
