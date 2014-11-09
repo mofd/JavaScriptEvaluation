@@ -8,11 +8,10 @@ moduleY.controller("ModuleRandomMessageCtrl", function ($scope, dispatcher, $htt
     //$scope.receivedMessage = "";
 
     dispatcher.registerEvent("message", function (message) {
-        $http.get("http://localhost:8080/message/", {params: {message: message}})
+        $http({url:"http://localhost:8080/message/", method:"GET", params: {messagePart: message}})
             .success(function (data, status, headers, config) {
-                // this callback will be called asynchronously
-                // when the response is available
-                $scope.receivedMessage = data;
+                $scope.receivedMessage = data.messageBody;
+                $scope.receivedMessageTimestamp = data.messageHeader['timestamp'];
             })
             .error(function (data, status, headers, config) {
                 alert("MessegService failed " + data);

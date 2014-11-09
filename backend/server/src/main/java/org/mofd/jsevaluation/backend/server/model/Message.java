@@ -3,6 +3,7 @@ package org.mofd.jsevaluation.backend.server.model;
 
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,15 +20,13 @@ public class Message {
     private String messageBody;
 
     public Message(String messagePart) {
-        String timestamp = String.valueOf(System.currentTimeMillis());
-        String internalMessage = String.valueOf(Math.abs(timestamp.hashCode())).substring(0, 5);
         if (StringUtils.isEmpty(messagePart)) {
-            messageBody = "Missing messagePart" + internalMessage;
+            messageBody = "Missing messagePart";
         } else {
-            messageBody = messagePart + " && " + internalMessage;
+            messageBody = "Message received on server: " + messagePart;
         }
 
-        messageHeader.put("timstamp", timestamp);
+        messageHeader.put("timestamp", new Date().toString());
     }
 
     public Map<String, String> getMessageHeader() {
