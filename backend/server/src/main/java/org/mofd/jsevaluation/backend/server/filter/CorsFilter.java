@@ -34,11 +34,6 @@ public class CorsFilter implements Filter {
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
-    @Override
-    public void destroy() {
-
-    }
-
     private String createOriginUrl(HttpServletRequest request) {
         String origin = request.getHeader("Origin");
         if (StringUtils.isEmpty(origin)) {
@@ -51,6 +46,11 @@ public class CorsFilter implements Filter {
                 return request.getRequestURL().toString();
             }
         }
+    }
+
+    @Override
+    public void destroy() {
+
     }
 
 
