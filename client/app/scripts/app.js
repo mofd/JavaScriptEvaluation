@@ -3,4 +3,4 @@
  */
 "use strict";
 
-var app = angular.module('app', ['platform', 'moduleX', 'moduleY', 'moduleRandomMessage']);
+var app = angular.module('app', ['platform', 'moduleX', 'moduleY', 'moduleMessage']);

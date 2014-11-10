@@ -1,7 +1,7 @@
 /**
  * Created by steuer.konstantin on 07.11.2014.
  */
-var moduleY = angular.module('moduleRandomMessage', ['platform']);
+var moduleMessage = angular.module('moduleMessage', ['platform']);
 
 moduleY.controller("ModuleMessageCtrl", function ($scope, dispatcher, $http) {
 
