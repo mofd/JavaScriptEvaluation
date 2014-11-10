@@ -3,7 +3,7 @@
  */
 var moduleY = angular.module('moduleRandomMessage', ['platform']);
 
-moduleY.controller("ModuleRandomMessageCtrl", function ($scope, dispatcher, $http) {
+moduleY.controller("ModuleMessageCtrl", function ($scope, dispatcher, $http) {
 
     //$scope.receivedMessage = "";
 
