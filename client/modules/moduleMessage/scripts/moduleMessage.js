@@ -14,7 +14,7 @@ moduleY.controller("ModuleMessageCtrl", function ($scope, dispatcher, $http) {
                 $scope.receivedMessageTimestamp = data.messageHeader['timestamp'];
             })
             .error(function (data, status, headers, config) {
-                alert("MessegService failed " + data);
+                alert("MessageService failed " + data);
             });
     });
 
