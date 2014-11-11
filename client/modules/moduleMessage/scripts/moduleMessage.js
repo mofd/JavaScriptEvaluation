@@ -3,7 +3,7 @@
  */
 var moduleMessage = angular.module('moduleMessage', ['platform']);
 
-moduleY.controller("ModuleMessageCtrl", function ($scope, dispatcher, $http) {
+moduleMessage.controller("ModuleMessageCtrl", function ($scope, dispatcher, $http) {
 
     //$scope.receivedMessage = "";
 

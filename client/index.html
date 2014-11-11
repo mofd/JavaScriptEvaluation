@@ -36,12 +36,19 @@
     </div>
 </fieldset>
 
-<fieldset title="ModuleRandomMessage" name="ModuleRandomMessage">
+<fieldset title="ModuleMessage" name="ModuleMessage">
     <legend>ModuleMessage</legend>
     <div ng-controller="ModuleMessageCtrl">
         <label>Timestamp: </label><label>{{receivedMessageTimestamp}}</label>
         <br>
         <label>Message: </label><label>{{receivedMessage}}</label>
+    </div>
+</fieldset>
+
+<fieldset title="ModuleCurrentTime" name="ModuleCurrentTime">
+    <legend>ModuleCurrentTime</legend>
+    <div ng-controller="ModuleCurrentServerTimeCtrl">
+        <label>CurrentServerTime: </label><label>{{currentTime}}</label>
     </div>
 </fieldset>
 
@@ -51,6 +58,7 @@
 <script src="modules/moduleX/scripts/moduleX.js"></script>
 <script src="modules/moduleY/scripts/moduleY.js"></script>
 <script src="modules/moduleMessage/scripts/moduleMessage.js"></script>
+<script src="modules/moduleCurrentServerTime/scripts/moduleCurrentServerTime.js"></script>
 <script src="app/scripts/app.js"></script>
 </body>
 </html>
