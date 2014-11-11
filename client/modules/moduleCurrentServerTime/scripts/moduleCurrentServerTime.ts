@@ -6,9 +6,9 @@ interface CurrentTime extends ng.IScope {
 
 var moduleCurrentServerTime = angular.module('moduleCurrentServerTime', ['platform']);
 
-moduleCurrentServerTime.controller("moduleCurrentServerTimeCtrl", function ($scope:CurrentTime, dispatcher, $http) {
+moduleCurrentServerTime.controller("ModuleCurrentServerTimeCtrl", function ($scope:CurrentTime, dispatcher, $http) {
 
-    dispatcher.registerEvent("time", function (message) {
+    dispatcher.registerEvent("time", function () {
         $http({url: "http://localhost:8080/currentTime/", method: "GET"})
             .success(function (data, status, headers, config) {
                 $scope.currentTime = data.currentTime;
