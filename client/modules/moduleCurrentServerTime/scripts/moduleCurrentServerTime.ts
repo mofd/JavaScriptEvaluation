@@ -4,13 +4,17 @@ interface CurrentTime extends ng.IScope {
     currentTime:string;
 }
 
+interface CurrentTimeDTO {
+    currentTime:string;
+}
+
 var moduleCurrentServerTime = angular.module('moduleCurrentServerTime', ['platform']);
 
-moduleCurrentServerTime.controller("ModuleCurrentServerTimeCtrl", function ($scope:CurrentTime, dispatcher, $http) {
+moduleCurrentServerTime.controller("ModuleCurrentServerTimeCtrl", function ($scope:CurrentTime, dispatcher, $http:ng.IHttpService) {
 
     dispatcher.registerEvent("time", function () {
         $http({url: "http://localhost:8080/currentTime/", method: "GET"})
-            .success(function (data, status, headers, config) {
+            .success(function (data:CurrentTimeDTO, status, headers, config) {
                 $scope.currentTime = data.currentTime;
             })
             .error(function (data, status, headers, config) {
