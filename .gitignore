@@ -2,3 +2,4 @@ typings/
 **/typed/**/*.js
 **/typed/**/*.map
 **/*.map
+*.log
