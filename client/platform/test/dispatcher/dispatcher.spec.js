@@ -1,5 +1,6 @@
 ///<reference path="../../../typed/jasmine/jasmine.d.ts"/>
 ///<reference path="../../../typed/angularjs/angular-mocks.d.ts"/>
+///<reference path="../../scripts/dispatcher/dispatcher.ts"/>
 describe("A dispatcher test", function () {
     beforeEach(module('platform'));
     var internalEventData = null;

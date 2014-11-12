@@ -1,4 +1,5 @@
 /// <reference path="../../../typed/angularjs/angular.d.ts"/>
+/// <reference path="../../../platform/scripts/dispatcher/dispatcher.ts"/>
 
 interface CurrentTime extends ng.IScope {
     currentTime:string;
@@ -10,7 +11,7 @@ interface CurrentTimeDTO {
 
 var moduleCurrentServerTime = angular.module('moduleCurrentServerTime', ['platform']);
 
-moduleCurrentServerTime.controller("ModuleCurrentServerTimeCtrl", function ($scope:CurrentTime, dispatcher, $http:ng.IHttpService) {
+moduleCurrentServerTime.controller("ModuleCurrentServerTimeCtrl", function ($scope:CurrentTime, dispatcher:dispatcher.IDispatcher, $http:ng.IHttpService) {
 
     dispatcher.registerEvent("time", function () {
         $http({url: "http://localhost:8080/currentTime/", method: "GET"})

@@ -1,5 +1,6 @@
 ///<reference path="../../../typed/jasmine/jasmine.d.ts"/>
 ///<reference path="../../../typed/angularjs/angular-mocks.d.ts"/>
+///<reference path="../../scripts/dispatcher/dispatcher.ts"/>
 
 describe("A dispatcher test", function () {
 
@@ -15,7 +16,7 @@ describe("A dispatcher test", function () {
        internalEventData = null;
     });
 
-    it("register and fire event", inject(function (dispatcher) {
+    it("register and fire event", inject(function (dispatcher:dispatcher.IDispatcher) {
         dispatcher.registerEvent("event", handler);
 
         var eventData = new Object();
@@ -24,7 +25,7 @@ describe("A dispatcher test", function () {
         expect(internalEventData).toBe(eventData);
     }));
 
-    it("register object instead function", inject(function (dispatcher) {
+    it("register object instead function", inject(function (dispatcher:dispatcher.IDispatcher) {
         try {
             dispatcher.registerEvent("event", new Object());
             throw new Error("test failed")
@@ -33,7 +34,7 @@ describe("A dispatcher test", function () {
         }
     }));
 
-    it("fire unknown event", inject(function (dispatcher) {
+    it("fire unknown event", inject(function (dispatcher:dispatcher.IDispatcher) {
         dispatcher.fireEvent("foo", new Object());
 
         expect(internalEventData).toBeNull();

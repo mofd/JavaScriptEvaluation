@@ -1,4 +1,5 @@
 /// <reference path="../../../typed/angularjs/angular.d.ts"/>
+/// <reference path="../../../platform/scripts/dispatcher/dispatcher.ts"/>
 var moduleCurrentServerTime = angular.module('moduleCurrentServerTime', ['platform']);
 moduleCurrentServerTime.controller("ModuleCurrentServerTimeCtrl", function ($scope, dispatcher, $http) {
     dispatcher.registerEvent("time", function () {
