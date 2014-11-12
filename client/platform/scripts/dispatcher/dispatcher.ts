@@ -1,30 +1,36 @@
 ///<reference path="../platform.ts"/>
+///<reference path="../../../typed/angularjs/angular.d.ts"/>
 "use strict";
 
-function Dispatcher() {
+interface IDispatcher {
+    registerEvent(eventName:string, eventHandler):void;
 
-    var eventMap = {};
+    fireEvent(eventName:string, eventData): void;
+}
 
-    this.registerEvent = function (eventName:string, eventHandler) {
+class Dispatcher implements IDispatcher {
+    private eventMap:Object = {};
+
+    registerEvent(eventName:string, eventHandler):void {
         if (eventName === undefined) {
             throw new Error("event name nicht vorhanden");
         } else if (eventHandler === undefined) {
             throw new Error("event handler nicht vorhanden");
         } else if (typeof eventHandler == 'function') {
-            if (eventMap[eventName] === undefined) {
-                eventMap[eventName] = [eventHandler];
+            if (this.eventMap[eventName] === undefined) {
+                this.eventMap[eventName] = [eventHandler];
             } else {
-                eventMap[eventName].push(eventHandler);
+                this.eventMap[eventName].push(eventHandler);
             }
         } else {
             var message = "eventHandler " + eventName + " ist keine funktion";
             console.warn(message);
             throw new Error(message);
         }
-    };
+    }
 
-    this.fireEvent = function (eventName:string, eventData) {
-        var eventHandlerArray = eventMap[eventName];
+    fireEvent(eventName:string, eventData):void {
+        var eventHandlerArray = this.eventMap[eventName];
         if (eventHandlerArray === undefined) {
             console.warn("kein event handler fuer " + eventName + " gefunden");
         } else if (eventHandlerArray instanceof Array) {
@@ -39,23 +45,18 @@ function Dispatcher() {
         } else {
             console.error("event handler konnte nicht ermittelt werden");
         }
-    };
+    }
 
-};
+}
 
+class DispatcherProvider implements ng.IServiceProvider {
 
-platform.provider('dispatcher', function () {
-    var dispatcher = new Dispatcher();
+    private dispatcher:IDispatcher = new Dispatcher();
 
-    this.$get = function () {
-        return {
-            registerEvent: function (eventName:string, eventHandler) {
-                dispatcher.registerEvent(eventName, eventHandler);
-            },
-            fireEvent: function (eventName:string, eventData) {
-                dispatcher.fireEvent(eventName, eventData);
-            }
-        };
-    };
-});
+    public $get():IDispatcher {
+        return this.dispatcher;
+    }
+}
+
+platform.provider('dispatcher', new DispatcherProvider());
 

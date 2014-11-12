@@ -1,8 +1,11 @@
 ///<reference path="../platform.ts"/>
+///<reference path="../../../typed/angularjs/angular.d.ts"/>
 "use strict";
-function Dispatcher() {
-    var eventMap = {};
-    this.registerEvent = function (eventName, eventHandler) {
+var Dispatcher = (function () {
+    function Dispatcher() {
+        this.eventMap = {};
+    }
+    Dispatcher.prototype.registerEvent = function (eventName, eventHandler) {
         if (eventName === undefined) {
             throw new Error("event name nicht vorhanden");
         }
@@ -10,11 +13,11 @@ function Dispatcher() {
             throw new Error("event handler nicht vorhanden");
         }
         else if (typeof eventHandler == 'function') {
-            if (eventMap[eventName] === undefined) {
-                eventMap[eventName] = [eventHandler];
+            if (this.eventMap[eventName] === undefined) {
+                this.eventMap[eventName] = [eventHandler];
             }
             else {
-                eventMap[eventName].push(eventHandler);
+                this.eventMap[eventName].push(eventHandler);
             }
         }
         else {
@@ -23,8 +26,8 @@ function Dispatcher() {
             throw new Error(message);
         }
     };
-    this.fireEvent = function (eventName, eventData) {
-        var eventHandlerArray = eventMap[eventName];
+    Dispatcher.prototype.fireEvent = function (eventName, eventData) {
+        var eventHandlerArray = this.eventMap[eventName];
         if (eventHandlerArray === undefined) {
             console.warn("kein event handler fuer " + eventName + " gefunden");
         }
@@ -43,19 +46,16 @@ function Dispatcher() {
             console.error("event handler konnte nicht ermittelt werden");
         }
     };
-}
-;
-platform.provider('dispatcher', function () {
-    var dispatcher = new Dispatcher();
-    this.$get = function () {
-        return {
-            registerEvent: function (eventName, eventHandler) {
-                dispatcher.registerEvent(eventName, eventHandler);
-            },
-            fireEvent: function (eventName, eventData) {
-                dispatcher.fireEvent(eventName, eventData);
-            }
-        };
+    return Dispatcher;
+})();
+var DispatcherProvider = (function () {
+    function DispatcherProvider() {
+        this.dispatcher = new Dispatcher();
+    }
+    DispatcherProvider.prototype.$get = function () {
+        return this.dispatcher;
     };
-});
+    return DispatcherProvider;
+})();
+platform.provider('dispatcher', new DispatcherProvider());
 //# sourceMappingURL=dispatcher.js.map
