@@ -4,15 +4,6 @@
 ///<reference path="../../platform/scripts/dispatcher/dispatcher.ts"/>
 "use strict";
 var app = angular.module('app', ['platform', 'ngRoute']);
-app.config(function ($routeProvider) {
-    $routeProvider.when("/login", {
-        controller: 'LoginCtrl',
-        templateUrl: '../platform/views/login.html'
-    }).when("/welcome", {
-        //controller: 'LoginCtrl',
-        templateUrl: '../platform/views/welcome.html'
-    });
-});
 app.run(function ($http, configurationService, dispatcher, $location) {
     $http({ url: "http://localhost:8080/config/", method: "GET" }).success(function (data, status, headers, config) {
         configurationService.init(data);

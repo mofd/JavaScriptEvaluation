@@ -6,16 +6,6 @@
 
 var app = angular.module('app', ['platform', 'ngRoute']);
 
-app.config(function ($routeProvider:ng.route.IRouteProvider) {
-    $routeProvider.when("/login", {
-        controller: 'LoginCtrl',
-        templateUrl: '../platform/views/login.html'
-    }).when("/welcome", {
-        //controller: 'LoginCtrl',
-        templateUrl: '../platform/views/welcome.html'
-    });
-});
-
 app.run(function ($http:ng.IHttpService, configurationService:configuration.IConfigurationInitialisationService,
                   dispatcher:dispatcher.IDispatcher, $location) {
     $http({url: "http://localhost:8080/config/", method: "GET"})
