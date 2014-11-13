@@ -8,7 +8,7 @@ module configuration {
         appName:string;
         remoteAddr:string;
         serverName:string;
-
+        serverUrl:string;
     }
 
     export interface IConfigurationService {

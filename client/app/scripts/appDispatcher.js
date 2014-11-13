@@ -3,4 +3,4 @@
  */
 "use strict";
 
-var appDispatcher = angular.module('app', ['platform', 'moduleX', 'moduleY', 'moduleMessage', 'moduleCurrentServerTime']);
+var appDispatcher = angular.module('appDispatcher', ['platform', 'moduleX', 'moduleY', 'moduleMessage', 'moduleCurrentServerTime']);
