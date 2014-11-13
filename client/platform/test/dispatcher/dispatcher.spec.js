@@ -31,4 +31,4 @@ describe("A dispatcher test", function () {
         expect(internalEventData).toBeNull();
     }));
 });
-//# sourceMappingURL=dispatcher.spec.js.map
+//# sourceMappingURL=configuration.spec.js.mapmap

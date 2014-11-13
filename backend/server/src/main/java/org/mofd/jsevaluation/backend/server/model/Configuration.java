@@ -9,20 +9,19 @@ import java.util.Date;
  * copyright (C) 2014, SWM Services GmbH
  */
 public class Configuration {
-	private final Date currentTime;
+	private final String currentTime;
 	private final String appName;
 	private final String remoteAddr;
 	private final String serverName;
 
 	public Configuration(Date currentTime, String appName, String remoteAddr, String serverName) {
-
-		this.currentTime = currentTime;
+		this.currentTime = currentTime.toString();
 		this.appName = appName;
 		this.remoteAddr = remoteAddr;
 		this.serverName = serverName;
 	}
 
-	public Date getCurrentTime() {
+	public String getCurrentTime() {
 		return currentTime;
 	}
 
