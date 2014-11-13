@@ -14,7 +14,7 @@ var dispatcher;
             else if (eventHandler === undefined) {
                 throw new Error("event handler nicht vorhanden");
             }
-            else if (typeof eventHandler == 'function') {
+            else if (typeof eventHandler === 'function') {
                 if (this.eventMap[eventName] === undefined) {
                     this.eventMap[eventName] = [eventHandler];
                 }
