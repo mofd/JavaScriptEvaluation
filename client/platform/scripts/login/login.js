@@ -39,7 +39,7 @@ platform.controller("LoginCtrl", function ($scope, $http, dispatcher, configurat
                 alert('Sie sind nicht Authorisiert diese Applikation zu nutzen :|');
             }
             else if (status === 400) {
-                alert('Upas das Login-Format passt nicht');
+                alert('Ups das Login-Format passt nicht');
             }
             else {
                 alert('Keine Ahung was passiert ist, aber Login geht nicht');
