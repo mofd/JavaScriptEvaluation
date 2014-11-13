@@ -39,7 +39,7 @@ public class ServiceController {
 
     @RequestMapping(value = "config", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Configuration config(HttpServletRequest request) {
-        return new Configuration(new Date(), "JavaScriptEvaluation", request.getRemoteAddr(), request.getServerName());
+        return new Configuration(new Date(), "JavaScriptEvaluation", request);
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
