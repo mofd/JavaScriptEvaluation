@@ -20,7 +20,7 @@ describe("A dispatcher test", function () {
     it("register object instead function", inject(function (dispatcher) {
         try {
             dispatcher.registerEvent("event", new Object());
-            throw new Error("test failed");
+            expect(true).toBe(false);
         }
         catch (e) {
             expect(e.message).toBe("eventHandler event ist keine funktion");
@@ -31,4 +31,4 @@ describe("A dispatcher test", function () {
         expect(internalEventData).toBeNull();
     }));
 });
-//# sourceMappingURL=configuration.spec.js.mapmap
+//# sourceMappingURL=dispatcher.spec.js.map

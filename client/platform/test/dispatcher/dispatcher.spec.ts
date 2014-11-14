@@ -28,7 +28,7 @@ describe("A dispatcher test", function () {
     it("register object instead function", inject(function (dispatcher:dispatcher.IDispatcher) {
         try {
             dispatcher.registerEvent("event", new Object());
-            throw new Error("test failed")
+            expect(true).toBe(false);
         } catch (e) {
             expect(e.message).toBe("eventHandler event ist keine funktion");
         }
