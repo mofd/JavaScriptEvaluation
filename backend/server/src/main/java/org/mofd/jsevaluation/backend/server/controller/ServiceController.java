@@ -8,10 +8,7 @@ import org.mofd.jsevaluation.backend.server.model.Session;
 import org.mofd.jsevaluation.backend.server.modules.Login;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,25 +37,5 @@ public class ServiceController {
     @RequestMapping(value = "config", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public Configuration config(HttpServletRequest request) {
         return new Configuration(new Date(), "JavaScriptEvaluation", request);
-    }
-
-    @RequestMapping(value = "login", method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Session login(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ObjectMapper jsonMapper = new ObjectMapper();
-        Login login;
-        try {
-            login = jsonMapper.readValue(request.getInputStream(), Login.class);
-        } catch (IOException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return null;
-        }
-
-        if(StringUtils.isEmpty(login.getBenutzer()) || StringUtils.isEmpty(login.getPasswort())){
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-            return null;
-        } else {
-            return new Session(String.valueOf(System.nanoTime()), true);
-        }
-
     }
 }
