@@ -1,0 +1,22 @@
+<div class="benutzername" ng-controller="RegisterCtrl">
+	<fieldset>
+		<legend>Registrierung</legend>
+		<label class="vornameLabel">Vorname</label>
+		<input class="vornameInput" ng-model="vorname" type="text"/>
+		<br>
+		<label class="nameLabel">Name</label>
+		<input class="nameInput" ng-model="name" type="text"/>
+		<br>
+		<label class="emailLabel">Email</label>
+		<input class="emailInput" ng-model="email" type="email"/>
+		<br>
+		<label class="benutzernameLabel">Benutzername</label>
+		<input class="benutzernameInput" ng-model="benutzername"/>
+		<br>
+		<label class="passwortLabel">Passwort</label>
+		<input class="passwortInput" ng-model="passwort" type="password"/>
+		<br>
+		<br>
+		<button ng-click="doRegister()">Registrieren</button>
+	</fieldset>
+</div>

@@ -15,6 +15,7 @@ module login {
     export interface SessionDTO {
         id:string;
         active:boolean;
+        userId:number;
     }
 
     export interface ISessionServiceInitialisation {

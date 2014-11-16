@@ -8,6 +8,11 @@ platform.config(function ($routeProvider) {
         templateUrl: '../platform/views/login.html'
     }).when("/welcome", {
         templateUrl: '../platform/views/welcome.html'
+    }).when("/register", {
+        controller: 'RegisterCtrl',
+        templateUrl: '../platform/views/register.html'
+    }).otherwise({
+        templateUrl: '../platform/views/welcome.html'
     });
 });
 //# sourceMappingURL=platform.js.map
