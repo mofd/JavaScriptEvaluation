@@ -4,6 +4,13 @@
 "use strict";
 var login;
 (function (login) {
+    var Events = (function () {
+        function Events() {
+        }
+        Events.LOGIN_SUCCESSED = "login_successed";
+        return Events;
+    })();
+    login.Events = Events;
     var SessionService = (function () {
         function SessionService() {
         }
@@ -30,10 +37,11 @@ var login;
 platform.provider('sessionService', new login.SessionServiceProvider());
 platform.controller("LoginCtrl", function ($scope, $http, dispatcher, configurationService, $location, sessionService) {
     $scope.doLogin = function () {
-        var login = JSON.stringify({ benutzer: $scope.benutzer, passwort: $scope.passwort });
-        $http.post(configurationService.getCurrentConfiguration().serverUrl + "login/", login).success(function (data, status, headers, config) {
+        var loginData = JSON.stringify({ benutzer: $scope.benutzer, passwort: $scope.passwort });
+        $http.post(configurationService.getCurrentConfiguration().serverUrl + "login/", loginData).success(function (data, status, headers, config) {
             sessionService.init(data);
             $location.url("/welcome");
+            dispatcher.fireEvent(login.Events.LOGIN_SUCCESSED, data);
         }).error(function (data, status, headers, config) {
             if (status === 401) {
                 alert('Sie sind nicht Authorisiert diese Applikation zu nutzen :|');

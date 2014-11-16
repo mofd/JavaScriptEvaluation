@@ -5,6 +5,11 @@
 "use strict";
 
 module login {
+
+    export class Events {
+        static LOGIN_SUCCESSED:string = "login_successed";
+    }
+
     export interface ILoginScope extends ng.IScope {
         benutzer:string;
         passwort:string;
@@ -57,11 +62,12 @@ platform.controller("LoginCtrl", function ($scope:login.ILoginScope, $http:ng.IH
                                            sessionService:login.ISessionServiceInitialisation) {
 
     $scope.doLogin = function () {
-        var login = JSON.stringify({benutzer: $scope.benutzer, passwort: $scope.passwort});
-        $http.post(configurationService.getCurrentConfiguration().serverUrl + "login/", login)
+        var loginData = JSON.stringify({benutzer: $scope.benutzer, passwort: $scope.passwort});
+        $http.post(configurationService.getCurrentConfiguration().serverUrl + "login/", loginData)
             .success(function (data:login.SessionDTO, status, headers, config) {
                 sessionService.init(data);
                 $location.url("/welcome");
+                dispatcher.fireEvent(login.Events.LOGIN_SUCCESSED, data);
             })
             .error(function (data, status, headers, config) {
                 if (status === 401) {

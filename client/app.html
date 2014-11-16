@@ -6,9 +6,9 @@
 </head>
 <body ng-app="app">
 
-<ul>
-    <li><a ng-href="#register">Registrieren</a></li>
-    <li><a ng-href="#login">Login</a></li>
+<ul ng-controller="NavigationCtrl">
+    <li id="navRegister"><a ng-href="#register">Registrieren</a></li>
+    <li id="navLogin"><a ng-href="#login">Login</a></li>
 </ul>
 
 <div id="mailLocation" ng-view></div>
@@ -20,6 +20,7 @@
 <script src="platform/scripts/configuration/configuration.js"></script>
 <script src="platform/scripts/login/login.js"></script>
 <script src="platform/scripts/register/register.js"></script>
+<script src="platform/scripts/navigation/navigation.js"></script>
 <script src="app/scripts/app.js"></script>
 </body>
 </html>
