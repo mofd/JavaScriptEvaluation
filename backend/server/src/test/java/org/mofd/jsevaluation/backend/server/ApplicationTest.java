@@ -3,10 +3,9 @@ package org.mofd.jsevaluation.backend.server;
 import org.junit.Before;
 import org.junit.Test;
 import org.mofd.jsevaluation.backend.server.repository.UserRepository;
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 public class ApplicationTest {
 
