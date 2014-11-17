@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head lang="de">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body ng-app="app">
+	<meta charset="UTF-8">
+	<title></title>
 
-<div id="navPanel" class="navPanel">
-    <ul id="navUl" class="navUI" ng-controller="NavigationCtrl">
-        <li id="navRegister" class="navItem"><a ng-href="#register">Registrieren</a></li>
-        <li id="navLogin" class="navItem"><a ng-href="#login">Login</a></li>
-        <li id="navLogout" class="navItem"><a href="" ng-click="onLogout()">Logout</a></li>
-    </ul>
+</head>
+<body>
+
+<link media="screen" href="css/app.css" type="text/css" rel="stylesheet"/>
+
+<div ng-app="app" class="appPanel">
+	<div id="navPanel" class="navPanel">
+		<ul class="navUl" ng-controller="NavigationCtrl">
+			<li id="navRegister" class="navItem"><a ng-href="#register">Registrieren</a></li>
+			<li id="navLogin" class="navItem"><a ng-href="#login">Login</a></li>
+			<li id="navLogout" class="navItem"><a href="" ng-click="onLogout()">Logout</a></li>
+		</ul>
+	</div>
+
+
+	<div id="mailLocation" class="mainPanel" ng-view></div>
+
+	<script src="lib/jquery/dist/jquery.js"></script>
+	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular-route/angular-route.js"></script>
+	<script src="platform/scripts/platform.js"></script>
+	<script src="platform/scripts/dispatcher/dispatcher.js"></script>
+	<script src="platform/scripts/configuration/configuration.js"></script>
+	<script src="platform/scripts/login/login.js"></script>
+
+	<script src="platform/scripts/register/register.js"></script>
+	<script src="platform/scripts/navigation/navigation.js"></script>
+	<script src="app/scripts/app.js"></script>
 </div>
 
-<div id="mailLocation" ng-view></div>
-
-<script src="lib/jquery/dist/jquery.js"></script>
-<script src="lib/angular/angular.js"></script>
-<script src="lib/angular-route/angular-route.js"></script>
-<script src="platform/scripts/platform.js"></script>
-<script src="platform/scripts/dispatcher/dispatcher.js"></script>
-<script src="platform/scripts/configuration/configuration.js"></script>
-<script src="platform/scripts/login/login.js"></script>
-<script src="platform/scripts/register/register.js"></script>
-<script src="platform/scripts/navigation/navigation.js"></script>
-<script src="app/scripts/app.js"></script>
 </body>
 </html>

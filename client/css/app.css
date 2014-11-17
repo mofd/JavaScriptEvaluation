@@ -1,0 +1,38 @@
+.appPanel{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*margin-top: -50px;*/
+    /*margin-left: -100px;*/
+}
+
+.navPanel {
+    min-height: 30px;
+}
+
+ul.navUl {
+    padding-left: 10px;
+}
+
+.navItem {
+    list-style: none;
+    display: inline;
+}
+
+.navItem a {
+    text-decoration: none;
+    font-weight: bold;
+    color: mediumseagreen;
+}
+
+.navItem#navLogout {
+    float: right;
+    padding-right: 10px;
+}
+
+.mainPanel {
+
+}
+
