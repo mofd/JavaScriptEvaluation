@@ -8,17 +8,27 @@ var login;
         function Events() {
         }
         Events.LOGIN_SUCCESSED = "login_successed";
+        Events.LOGOUT_SUCCESSED = "logout_successed";
         return Events;
     })();
     login.Events = Events;
     var SessionService = (function () {
         function SessionService() {
         }
+        SessionService.prototype.initWithDispatcher = function (dispatcher) {
+            this.dispatcher = dispatcher;
+        };
         SessionService.prototype.init = function (session) {
             this.session = session;
         };
         SessionService.prototype.getCurrentSession = function () {
             return this.session;
+        };
+        SessionService.prototype.logout = function () {
+            this.session = null;
+            if (this.dispatcher) {
+                this.dispatcher.fireEvent(Events.LOGOUT_SUCCESSED);
+            }
         };
         return SessionService;
     })();

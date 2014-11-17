@@ -8,6 +8,7 @@ module login {
 
     export class Events {
         static LOGIN_SUCCESSED:string = "login_successed";
+        static LOGOUT_SUCCESSED:string = "logout_successed";
     }
 
     export interface ILoginScope extends ng.IScope {
@@ -25,14 +26,24 @@ module login {
 
     export interface ISessionServiceInitialisation {
         init(session:SessionDTO):void;
+
+        initWithDispatcher(dispatcher:dispatcher.IDispatcher):void
     }
 
     export interface ISessionService {
         getCurrentSession():SessionDTO;
+
+        logout():void;
     }
 
     export class SessionService implements ISessionService, ISessionServiceInitialisation {
         private session:SessionDTO;
+
+        private dispatcher:dispatcher.IDispatcher;
+
+        initWithDispatcher(dispatcher:dispatcher.IDispatcher):void {
+            this.dispatcher = dispatcher;
+        }
 
         init(session:login.SessionDTO):void {
             this.session = session;
@@ -43,6 +54,12 @@ module login {
             return this.session;
         }
 
+        logout():void {
+            this.session = null;
+            if(this.dispatcher){
+                this.dispatcher.fireEvent(Events.LOGOUT_SUCCESSED);
+            }
+        }
     }
 
     export class SessionServiceProvider implements ng.IServiceProvider {

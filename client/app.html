@@ -6,13 +6,17 @@
 </head>
 <body ng-app="app">
 
-<ul ng-controller="NavigationCtrl">
-    <li id="navRegister"><a ng-href="#register">Registrieren</a></li>
-    <li id="navLogin"><a ng-href="#login">Login</a></li>
-</ul>
+<div id="navPanel" class="navPanel">
+    <ul id="navUl" class="navUI" ng-controller="NavigationCtrl">
+        <li id="navRegister" class="navItem"><a ng-href="#register">Registrieren</a></li>
+        <li id="navLogin" class="navItem"><a ng-href="#login">Login</a></li>
+        <li id="navLogout" class="navItem"><a href="" ng-click="onLogout()">Logout</a></li>
+    </ul>
+</div>
 
 <div id="mailLocation" ng-view></div>
 
+<script src="lib/jquery/dist/jquery.js"></script>
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular-route/angular-route.js"></script>
 <script src="platform/scripts/platform.js"></script>
