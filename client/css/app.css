@@ -36,3 +36,43 @@ ul.navUl {
 
 }
 
+label {
+    float: left;
+    min-width: 200px;
+}
+
+input {
+    margin-bottom: 5px;
+    min-width: 300px;
+    border-style: solid;
+}
+
+
+
+/*Validation*/
+input.ng-invalid, input.ng-dirty {
+    border-width: 2px;
+    border-color: #c7254e;
+    border-top-color: #c7254e;
+    border-left-color: #c7254e;
+}
+input.ng-valid {
+    border-width: 2px;
+    border-color: lawngreen;
+    border-top-color: lawngreen;
+    border-left-color: lawngreen;
+}
+input.ng-invalid-required {
+    background-color: transparent;
+    border-color: #ffef10;
+    border-top-color: #ffef10;
+    border-left-color: #ffef10;
+    border-radius: 2px;
+}
+div.errorMsg {
+    display: inline;
+    margin-left: 20px;
+    font-weight: bold;
+    color: #c7254e;
+}
+
