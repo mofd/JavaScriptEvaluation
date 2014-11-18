@@ -15,7 +15,9 @@ module login {
         benutzer:string;
         passwort:string;
 
-        doLogin():void;
+        submitted:boolean;
+
+        doLogin(valide:boolean):void;
     }
 
     export interface SessionDTO {
@@ -56,7 +58,7 @@ module login {
 
         logout():void {
             this.session = null;
-            if(this.dispatcher){
+            if (this.dispatcher) {
                 this.dispatcher.fireEvent(Events.LOGOUT_SUCCESSED);
             }
         }
@@ -78,22 +80,27 @@ platform.controller("LoginCtrl", function ($scope:login.ILoginScope, $http:ng.IH
                                            configurationService:configuration.IConfigurationService, $location,
                                            sessionService:login.ISessionServiceInitialisation) {
 
-    $scope.doLogin = function () {
-        var loginData = JSON.stringify({benutzer: $scope.benutzer, passwort: $scope.passwort});
-        $http.post(configurationService.getCurrentConfiguration().serverUrl + "login/", loginData)
-            .success(function (data:login.SessionDTO, status, headers, config) {
-                sessionService.init(data);
-                $location.url("/welcome");
-                dispatcher.fireEvent(login.Events.LOGIN_SUCCESSED, data);
-            })
-            .error(function (data, status, headers, config) {
-                if (status === 401) {
-                    alert('Sie sind nicht Authorisiert diese Applikation zu nutzen :|');
-                } else if (status === 400) {
-                    alert('Ups das Login-Format passt nicht');
-                } else {
-                    alert('Keine Ahung was passiert ist, aber Login geht nicht');
-                }
-            })
+    $scope.doLogin = function (valide:boolean) {
+        if (valide) {
+            var loginData = JSON.stringify({benutzer: $scope.benutzer, passwort: $scope.passwort});
+            $http.post(configurationService.getCurrentConfiguration().serverUrl + "login/", loginData)
+                .success(function (data:login.SessionDTO, status, headers, config) {
+                    sessionService.init(data);
+                    $location.url("/welcome");
+                    dispatcher.fireEvent(login.Events.LOGIN_SUCCESSED, data);
+                })
+                .error(function (data, status, headers, config) {
+                    if (status === 401) {
+                        alert('Sie sind nicht Authorisiert diese Applikation zu nutzen :|');
+                    } else if (status === 400) {
+                        alert('Ups das Login-Format passt nicht');
+                    } else {
+                        alert('Keine Ahung was passiert ist, aber Login geht nicht');
+                    }
+                })
+        } else {
+            $scope.submitted = true;
+        }
     };
-});
+})
+;

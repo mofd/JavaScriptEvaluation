@@ -59,6 +59,5 @@ platform.directive("passwort", function ():ng.IDirective {
                 }
             }
         }
-
     }
 });

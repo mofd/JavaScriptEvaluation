@@ -1,12 +1,29 @@
-<div class="login" ng-controller="LoginCtrl">
+<div class="login">
 	<fieldset>
 		<legend>Login</legend>
-		<label class="benutzerLabel">Benutzer</label>
-		<input class="benutzerInput" ng-model="benutzer" type="text"/>
-		<br>
-		<label class="passwortLabel">Passwort</label>
-		<input class="passwortInput" ng-model="passwort" type="password"/>
-		<br>
-		<button ng-click="doLogin()">Login</button>
+		<form name="login" ng-controller="LoginCtrl" novalidate>
+			<label class="benutzerLabel">Benutzer</label>
+			<input class="benutzerInput" ng-model="benutzer" name="benutzer" type="text" required/>
+			<div ng-show="login.benutzer.$pristine && submitted" class="errorMsg">
+				Darf nicht leer sein.
+			</div>
+			<div ng-show="login.benutzer.$dirty && login.benutzer.$invalid" class="errorMsg">
+				<span ng-show="login.benutzer.$error.required">Darf nicht leer sein.</span>
+			</div>
+
+			<br>
+
+			<label class="passwortLabel">Passwort</label>
+			<input class="passwortInput" ng-model="passwort" name="passwort" type="password" required/>
+			<div ng-show="login.passwort.$pristine && submitted" class="errorMsg">
+				Darf nicht leer sein.
+			</div>
+			<div ng-show="login.passwort.$dirty && login.passwort.$invalid" class="errorMsg">
+				<span ng-show="login.passwort.$error.required">Darf nicht leer sein.</span>
+			</div>
+
+			<br>
+			<button ng-click="doLogin(login.$valid)">Login</button>
+		</form>
 	</fieldset>
 </div>
