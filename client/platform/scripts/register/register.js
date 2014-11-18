@@ -1,6 +1,10 @@
 ///<reference path="../../../typed/angularjs/angular.d.ts"/>
 ///<reference path="../configuration/configuration.ts"/>
 "use strict";
+var register;
+(function (register) {
+    register.PASSWORT_PATTERN = /^[a-zA-ZäöüÄÖÜß0-9+-\_&\/\(\)\.\,\ ]*$/;
+})(register || (register = {}));
 platform.controller("RegisterCtrl", function ($scope, $http, $location, configurationService) {
     $scope.doRegister = function (valide) {
         if (valide) {
@@ -20,6 +24,24 @@ platform.controller("RegisterCtrl", function ($scope, $http, $location, configur
         }
         else {
             $scope.submitted = true;
+        }
+    };
+});
+platform.directive("passwort", function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, instanceElement, instanceAttributes, controller, transclude) {
+            controller.$validators.passwort = function (modelValue, viewValue) {
+                if (controller.$isEmpty(modelValue)) {
+                    return false;
+                }
+                else if (register.PASSWORT_PATTERN.test(viewValue)) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            };
         }
     };
 });

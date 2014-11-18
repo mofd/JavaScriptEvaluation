@@ -5,11 +5,11 @@
 			<label class="vornameLabel">Vorname</label>
 			<input class="vornameInput" ng-model="vorname" name="vorname" type="text" ng-minlength="3" required/>
 			<div ng-show="register.vorname.$pristine && submitted" class="errorMsg">
-				Darf nicht leere sein
+				Darf nicht leer sein.
 			</div>
 			<div ng-show="register.vorname.$dirty && register.vorname.$invalid" class="errorMsg">
-				<span ng-show="register.vorname.$error.required">Darf nicht leere sein</span>
-				<span ng-show="register.vorname.$error.minlength">Mindestens 3 Zeichen</span>
+				<span ng-show="register.vorname.$error.required">Darf nicht leer sein.</span>
+				<span ng-show="register.vorname.$error.minlength">Mindestens 3 Zeichen.</span>
 			</div>
 
 			<br>
@@ -17,23 +17,23 @@
 			<label class="nameLabel">Name</label>
 			<input class="nameInput" ng-model="name" name="name" type="text" required ng-minlength="3"/>
 			<div ng-show="register.name.$pristine && submitted" class="errorMsg">
-				Darf nicht leere sein
+				Darf nicht leer sein.
 			</div>
 			<div ng-show="register.name.$dirty && register.name.$invalid" class="errorMsg">
-				<span ng-show="register.name.$error.required">Darf nicht leere sein</span>
-				<span ng-show="register.name.$error.minlength">Mindestens 3 Zeichen</span>
+				<span ng-show="register.name.$error.required">Darf nicht leer sein.</span>
+				<span ng-show="register.name.$error.minlength">Mindestens 3 Zeichen.</span>
 			</div>
 
 			<br>
 
 			<label class="emailLabel">Email</label>
-			<input class="emailInput" ng-model="email" name="email" type="email" required/>
+			<input class="emailInput" ng-model="email" name="email" type="email" required ng-pattern="/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/"/>
 			<div ng-show="register.email.$pristine && submitted" class="errorMsg">
-				Darf nicht leere sein
+				Darf nicht leer sein.
 			</div>
 			<div ng-show="register.email.$dirty && register.email.$invalid" class="errorMsg">
-				<span ng-show="register.email.$error.required">Darf nicht leere sein</span>
-				<span ng-show="register.email.$error.email">Felerhafte Emailadresse</span>
+				<span ng-show="register.email.$error.required">Darf nicht leer sein.</span>
+				<span ng-show="register.email.$error.pattern">Felerhafte Emailadresse</span>
 			</div>
 
 			<br>
@@ -41,22 +41,24 @@
 			<label class="benutzernameLabel">Benutzername</label>
 			<input class="benutzernameInput" ng-model="benutzername" name="benutzername" required ng-minlength="3"/>
 			<div ng-show="register.benutzername.$pristine && submitted" class="errorMsg">
-				Darf nicht leere sein
+				Darf nicht leer sein.
 			</div>
 			<div ng-show="register.benutzername.$dirty && register.benutzername.$invalid" class="errorMsg">
-				<span ng-show="register.benutzername.$error.required">Darf nicht leere sein</span>
-				<span ng-show="register.benutzername.$error.minlength">Mindestens 3 Zeichen</span>
+				<span ng-show="register.benutzername.$error.required">Darf nicht leer sein.</span>
+				<span ng-show="register.benutzername.$error.minlength">Mindestens 3 Zeichen.</span>
 			</div>
 
 			<br>
 
 			<label class="passwortLabel">Passwort</label>
-			<input class="passwortInput" ng-model="passwort" name="passwort" type="password" required/>
+			<input class="passwortInput" ng-model="passwort" name="passwort" type="password" required passwort minlength="3"/>
 			<div ng-show="register.passwort.$pristine && submitted" class="errorMsg">
-				Darf nicht leere sein
+				Darf nicht leer sein.
 			</div>
 			<div ng-show="register.passwort.$dirty && register.passwort.$invalid" class="errorMsg">
-				<span ng-show="register.passwort.$error.required">Darf nicht leere sein</span>
+				<span ng-show="register.passwort.$error.required">Darf nicht leer sein.</span>
+				<span ng-show="register.passwort.$error.passwort">Es sind nur Buchstaben, Ziffern und folgende Sonderzeichen für die Eingabe erlaubt: +, -, (, ), _, /, Leerzeichen.</span>
+				<span ng-show="register.passwort.$error.minlength">Mindestens 3 Zeichen.</span>
 			</div>
 
 			<br>
