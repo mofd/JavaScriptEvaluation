@@ -9,6 +9,8 @@
 
 <link media="screen" href="css/app.css" type="text/css" rel="stylesheet"/>
 
+<script src="lib/requirejs/require.js" data-main="app/scripts/main.js"></script>
+
 <div ng-app="app" class="appPanel" ng-cloak>
 	<div id="navPanel" class="navPanel">
 		<ul class="navUl" ng-controller="NavigationCtrl">
@@ -21,17 +23,7 @@
 
 	<div id="mailLocation" class="mainPanel" ng-view></div>
 
-	<script src="lib/jquery/dist/jquery.js"></script>
-	<script src="lib/angular/angular.js"></script>
-	<script src="lib/angular-route/angular-route.js"></script>
-	<script src="platform/scripts/platform.js"></script>
-	<script src="platform/scripts/dispatcher/dispatcher.js"></script>
-	<script src="platform/scripts/configuration/configuration.js"></script>
-	<script src="platform/scripts/login/login.js"></script>
 
-	<script src="platform/scripts/register/register.js"></script>
-	<script src="platform/scripts/navigation/navigation.js"></script>
-	<script src="app/scripts/app.js"></script>
 </div>
 
 </body>
