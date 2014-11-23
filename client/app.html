@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head lang="de">
-	<meta charset="UTF-8">
-	<title></title>
+    <meta charset="UTF-8">
+    <title></title>
 
 </head>
 <body>
 
 <link media="screen" href="css/app.css" type="text/css" rel="stylesheet"/>
 
-<script src="lib/requirejs/require.js" data-main="app/scripts/main.js"></script>
 
-<div ng-app="app" class="appPanel" ng-cloak>
-	<div id="navPanel" class="navPanel">
-		<ul class="navUl" ng-controller="NavigationCtrl">
-			<li id="navRegister" class="navItem"><a ng-href="#register">Registrieren</a></li>
-			<li id="navLogin" class="navItem"><a ng-href="#login">Login</a></li>
-			<li id="navLogout" class="navItem"><a href="" ng-click="onLogout()">Logout</a></li>
-		</ul>
-	</div>
+<div ng-app="app" class="appPanel">
+    <div id="navPanel" class="navPanel">
+        <ul class="navUl" ng-controller="NavigationCtrl">
+            <li id="navRegister" class="navItem"><a ng-href="#register">Registrieren</a></li>
+            <li id="navLogin" class="navItem"><a ng-href="#login">Login</a></li>
+            <li id="navLogout" class="navItem"><a href="" ng-click="onLogout()">Logout</a></li>
+        </ul>
+    </div>
 
 
-	<div id="mailLocation" class="mainPanel" ng-view></div>
+    <div id="mailLocation" class="mainPanel" ng-view></div>
 
+    <script src="lib/requirejs/require.js" data-main="app/scripts/main.js"></script>
 
 </div>
 

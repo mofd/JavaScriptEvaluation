@@ -10,7 +10,6 @@ require.config({
         'angular-resource': '../lib/angular-resource/angular-resource.min',
 
         'app': '../app/scripts/app',
-        'platform': '../platform/scripts/platform',
         'platform-dispatcher': '../platform/scripts/dispatcher/dispatcher',
         'platform-configuration': '../platform/scripts/configuration/configuration',
         'platform-navigation': '../platform/scripts/navigation/navigation',
@@ -23,17 +22,16 @@ require.config({
             exports: 'angular',
             deps: ['jquery']
         },
-        'angular-route': {exports: 'angular-route', deps:['angular']},
-        'angular-resource': {exports: 'angular-resource', deps:['angular']},
+        'angular-route': {exports: 'angular-route', deps: ['angular']},
+        'angular-resource': {exports: 'angular-resource', deps: ['angular']},
 
-        'app': { exports: 'app'},
-        'platform': { exports: 'platform'},
-        'platform-dispatcher': { exports: 'platform-dispatcher', dep: ['platform'] },
-        'platform-configuration': { exports: 'platform-configuration', dep: ['platform'] },
-        'platform-navigation': { exports: 'platform-navigation', dep: ['platform'] },
+        'app': {exports: 'app'},
+        'platform-dispatcher': {exports: 'platform-dispatcher'},
+        'platform-configuration': {exports: 'platform-configuration'},
+        'platform-navigation': {exports: 'platform-navigation'},
 
-        'platform-login': { exports: 'platform-login', dep: ['platform'] },
-        'platform-register': { exports: 'platform-register', dep: ['platform'] },
+        'platform-login': {exports: 'platform-login'},
+        'platform-register': {exports: 'platform-register'},
     }
 });
 
