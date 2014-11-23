@@ -9,6 +9,7 @@ require.config({
         'angular-route': '../lib/angular-route/angular-route.min',
         'angular-resource': '../lib/angular-resource/angular-resource.min',
 
+        'app': '../app/scripts/app',
         'platform': '../platform/scripts/platform',
         'platform-dispatcher': '../platform/scripts/dispatcher/dispatcher',
         'platform-configuration': '../platform/scripts/configuration/configuration',
@@ -22,10 +23,11 @@ require.config({
             exports: 'angular',
             deps: ['jquery']
         },
-        'angular-route': ['angular'],
-        'angular-resource': ['angular'],
+        'angular-route': {exports: 'angular-route', deps:['angular']},
+        'angular-resource': {exports: 'angular-resource', deps:['angular']},
 
-        'platform': { exports: 'platform' },
+        'app': { exports: 'app'},
+        'platform': { exports: 'platform'},
         'platform-dispatcher': { exports: 'platform-dispatcher', dep: ['platform'] },
         'platform-configuration': { exports: 'platform-configuration', dep: ['platform'] },
         'platform-navigation': { exports: 'platform-navigation', dep: ['platform'] },
@@ -36,7 +38,7 @@ require.config({
 });
 
 // startup the application
-require(['angular', 'platform', 'platform-dispatcher', 'platform-navigation', 'platform-configuration'],
+require(['angular', 'app'],
 
     function (angular:ng.IAngularStatic, document) {
 

@@ -1,4 +1,5 @@
 ///<reference path="../../../typed/angularjs/angular.d.ts"/>
+///<reference path="../../../typed/requirejs/require.d.ts"/>
 ///<reference path="../dispatcher/dispatcher.ts"/>
 ///<reference path="../configuration/configuration.ts"/>
 
@@ -74,33 +75,35 @@ module login {
     }
 }
 
-platform.provider('sessionService', new login.SessionServiceProvider());
+define(['angular', 'platform-dispatcher', 'platform-configuration'],
+    function (angular:ng.IAngularStatic) {
+        angular.module('platform-login', ['platform-dispatcher', 'platform-configuration'])
+            .provider('sessionService', new login.SessionServiceProvider())
+            .controller("LoginCtrl", function ($scope:login.ILoginScope, $http:ng.IHttpService, dispatcher:dispatcher.IDispatcher,
+                                               configurationService:configuration.IConfigurationService, $location,
+                                               sessionService:login.ISessionServiceInitialisation) {
 
-platform.controller("LoginCtrl", function ($scope:login.ILoginScope, $http:ng.IHttpService, dispatcher:dispatcher.IDispatcher,
-                                           configurationService:configuration.IConfigurationService, $location,
-                                           sessionService:login.ISessionServiceInitialisation) {
-
-    $scope.doLogin = function (valide:boolean) {
-        if (valide) {
-            var loginData = JSON.stringify({benutzer: $scope.benutzer, passwort: $scope.passwort});
-            $http.post(configurationService.getCurrentConfiguration().serverUrl + "login/", loginData)
-                .success(function (data:login.SessionDTO, status, headers, config) {
-                    sessionService.init(data);
-                    $location.url("/welcome");
-                    dispatcher.fireEvent(login.Events.LOGIN_SUCCESSED, data);
-                })
-                .error(function (data, status, headers, config) {
-                    if (status === 401) {
-                        alert('Sie sind nicht Authorisiert diese Applikation zu nutzen :|');
-                    } else if (status === 400) {
-                        alert('Ups das Login-Format passt nicht');
+                $scope.doLogin = function (valide:boolean) {
+                    if (valide) {
+                        var loginData = JSON.stringify({benutzer: $scope.benutzer, passwort: $scope.passwort});
+                        $http.post(configurationService.getCurrentConfiguration().serverUrl + "login/", loginData)
+                            .success(function (data:login.SessionDTO, status, headers, config) {
+                                sessionService.init(data);
+                                $location.url("/welcome");
+                                dispatcher.fireEvent(login.Events.LOGIN_SUCCESSED, data);
+                            })
+                            .error(function (data, status, headers, config) {
+                                if (status === 401) {
+                                    alert('Sie sind nicht Authorisiert diese Applikation zu nutzen :|');
+                                } else if (status === 400) {
+                                    alert('Ups das Login-Format passt nicht');
+                                } else {
+                                    alert('Keine Ahung was passiert ist, aber Login geht nicht');
+                                }
+                            })
                     } else {
-                        alert('Keine Ahung was passiert ist, aber Login geht nicht');
+                        $scope.submitted = true;
                     }
-                })
-        } else {
-            $scope.submitted = true;
-        }
-    };
-})
-;
+                };
+            });
+    });

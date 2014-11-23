@@ -1,5 +1,5 @@
-///<reference path="../platform.ts"/>
 ///<reference path="../../../typed/angularjs/angular.d.ts"/>
+///<reference path="../../../typed/requirejs/require.d.ts"/>
 var configuration;
 (function (_configuration) {
     var ConfigurationService = (function () {
@@ -25,5 +25,7 @@ var configuration;
     })();
     _configuration.ConfigurationServiceProvider = ConfigurationServiceProvider;
 })(configuration || (configuration = {}));
-platform.provider('configurationService', new configuration.ConfigurationServiceProvider());
+define(['angular'], function (angular) {
+    angular.module('platform-configuration', []).provider('configurationService', new configuration.ConfigurationServiceProvider());
+});
 //# sourceMappingURL=configuration.js.map

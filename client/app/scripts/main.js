@@ -7,6 +7,7 @@ require.config({
         'angular': '../lib/angular/angular.min',
         'angular-route': '../lib/angular-route/angular-route.min',
         'angular-resource': '../lib/angular-resource/angular-resource.min',
+        'app': '../app/scripts/app',
         'platform': '../platform/scripts/platform',
         'platform-dispatcher': '../platform/scripts/dispatcher/dispatcher',
         'platform-configuration': '../platform/scripts/configuration/configuration',
@@ -19,8 +20,9 @@ require.config({
             exports: 'angular',
             deps: ['jquery']
         },
-        'angular-route': ['angular'],
-        'angular-resource': ['angular'],
+        'angular-route': { exports: 'angular-route', deps: ['angular'] },
+        'angular-resource': { exports: 'angular-resource', deps: ['angular'] },
+        'app': { exports: 'app' },
         'platform': { exports: 'platform' },
         'platform-dispatcher': { exports: 'platform-dispatcher', dep: ['platform'] },
         'platform-configuration': { exports: 'platform-configuration', dep: ['platform'] },
@@ -30,7 +32,7 @@ require.config({
     }
 });
 // startup the application
-require(['angular', 'platform', 'platform-dispatcher', 'platform-navigation', 'platform-configuration'], function (angular, document) {
+require(['angular', 'app'], function (angular, document) {
     // bootstrap the document, since we are loading asynchronously
     angular.bootstrap(document, ['app']);
 });

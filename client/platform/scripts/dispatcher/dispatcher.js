@@ -1,6 +1,7 @@
 ///<reference path="../platform.ts"/>
 ///<reference path="../../../typed/angularjs/angular.d.ts"/>
 "use strict";
+///<reference path="../../../typed/requirejs/require.d.ts"/>
 var dispatcher;
 (function (dispatcher) {
     var Dispatcher = (function () {
@@ -62,5 +63,7 @@ var dispatcher;
     })();
     dispatcher.DispatcherProvider = DispatcherProvider;
 })(dispatcher || (dispatcher = {}));
-platform.provider('dispatcher', new dispatcher.DispatcherProvider());
+define(['angular'], function (angular) {
+    angular.module('platform-dispatcher', []).provider('dispatcher', new dispatcher.DispatcherProvider());
+});
 //# sourceMappingURL=dispatcher.js.map

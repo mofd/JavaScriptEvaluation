@@ -16,21 +16,23 @@ var navigation;
     }
     navigation.loggedOut = loggedOut;
 })(navigation || (navigation = {}));
-platform.controller("NavigationCtrl", function ($scope, dispatcher, sessionService) {
-    $scope.onLogout = function () {
-        sessionService.logout();
-    };
-    dispatcher.registerEvent(login.Events.LOGIN_SUCCESSED, function (session) {
-        navigation.loggedIn();
+define(['angular', 'platform-dispatcher', 'platform-login'], function (angular) {
+    angular.module('platform-navigation', ['platform-dispatcher', 'platform-login']).controller("NavigationCtrl", function ($scope, dispatcher, sessionService) {
+        $scope.onLogout = function () {
+            sessionService.logout();
+        };
+        dispatcher.registerEvent(login.Events.LOGIN_SUCCESSED, function (session) {
+            navigation.loggedIn();
+        });
+        dispatcher.registerEvent(login.Events.LOGOUT_SUCCESSED, function (session) {
+            navigation.loggedOut();
+        });
+        if (sessionService.getCurrentSession()) {
+            navigation.loggedIn();
+        }
+        else {
+            navigation.loggedOut();
+        }
     });
-    dispatcher.registerEvent(login.Events.LOGOUT_SUCCESSED, function (session) {
-        navigation.loggedOut();
-    });
-    if (sessionService.getCurrentSession()) {
-        navigation.loggedIn();
-    }
-    else {
-        navigation.loggedOut();
-    }
 });
 //# sourceMappingURL=navigation.js.map
