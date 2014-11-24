@@ -30,8 +30,8 @@ require.config({
     }
 });
 // startup the application
-require(['angular', 'app'], function (angular, document) {
+require(['angular', 'app', 'platform-navigation'], function (angular) {
     // bootstrap the document, since we are loading asynchronously
-    angular.bootstrap(document, ['app']);
+    angular.bootstrap(document, ['app', 'platform-navigation']);
 });
 //# sourceMappingURL=main.js.map

@@ -22,7 +22,7 @@ define(['angular', 'angular-route', 'platform-configuration', 'platform-dispatch
         $http({ url: "http://localhost:8080/config/", method: "GET" }).success(function (data, status, headers, config) {
             configurationService.init(data);
             sessionService.initWithDispatcher(dispatcher);
-            //$location.url("/login");
+            $location.url("/login");
         }).error(function (data, status, headers, config) {
             alert("MessageService failed " + data);
         });

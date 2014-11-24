@@ -1,6 +1,7 @@
 ///<reference path="../../../typed/angularjs/angular.d.ts"/>
 ///<reference path="../../../typed/requirejs/require.d.ts"/>
 ///<reference path="../configuration/configuration.ts"/>
+///<reference path="controller.ts"/>
 
 "use strict";
 
@@ -19,30 +20,9 @@ module register {
     }
 }
 
-define(['angular', 'platform-configuration'], function (angular:ng.IAngularStatic) {
+define(['angular', 'platform-configuration', 'platform/scripts/register/controller'], function (angular:ng.IAngularStatic) {
     angular.module('platform-register', ['platform-configuration'])
-        .controller("RegisterCtrl", function ($scope:register.IRegisterScope, $http:ng.IHttpService, $location,
-                                              configurationService:configuration.IConfigurationService) {
-
-            $scope.doRegister = function (valide:boolean) {
-                if (valide) {
-                    var register = JSON.stringify({
-                        name: $scope.name, vorname: $scope.vorname, mail: $scope.mail,
-                        benutzername: $scope.benutzername, passwort: $scope.passwort
-                    });
-                    $http.post(configurationService.getCurrentConfiguration().serverUrl + "register/", register)
-                        .success(function (data:number, status, headers, config) {
-                            $location.url("/login");
-                        })
-                        .error(function (data, status, headers, config) {
-                            console.log("Registrierung ist fehlgeschlagen: " + data)
-                            alert('Registrierung ist fehlgeschlagen');
-                        })
-                } else {
-                    $scope.submitted = true;
-                }
-            };
-        })
+        .controller("RegisterCtrl", controller)
         .directive("passwort", function ():ng.IDirective {
             return {
                 require: 'ngModel',

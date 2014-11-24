@@ -31,16 +31,15 @@ require.config({
         'platform-navigation': {exports: 'platform-navigation'},
 
         'platform-login': {exports: 'platform-login'},
-        'platform-register': {exports: 'platform-register'},
+        'platform-register': {exports: 'platform-register'}
     }
 });
 
 // startup the application
-require(['angular', 'app'],
+require(['angular', 'app', 'platform-navigation'],
 
-    function (angular:ng.IAngularStatic, document) {
-
+    function (angular:ng.IAngularStatic) {
         // bootstrap the document, since we are loading asynchronously
-        angular.bootstrap(document, ['app']);
+        angular.bootstrap(document, ['app', 'platform-navigation']);
     }
 );
