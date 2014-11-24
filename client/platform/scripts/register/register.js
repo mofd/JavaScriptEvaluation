@@ -8,7 +8,7 @@ var register;
     register.PASSWORT_PATTERN = /^[a-zA-ZäöüÄÖÜß0-9+-\_&\/\(\)\.\,\ ]*$/;
 })(register || (register = {}));
 define(['angular', 'platform-configuration', 'platform/scripts/register/controller'], function (angular) {
-    angular.module('platform-register', ['platform-configuration']).controller("RegisterCtrl", controller).directive("passwort", function () {
+    angular.module('platform-register', ['platform-configuration']).controller("RegisterCtrl", navigationController.Controller).directive("passwort", function () {
         return {
             require: 'ngModel',
             link: function (scope, instanceElement, instanceAttributes, controller, transclude) {

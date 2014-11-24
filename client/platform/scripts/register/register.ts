@@ -22,7 +22,7 @@ module register {
 
 define(['angular', 'platform-configuration', 'platform/scripts/register/controller'], function (angular:ng.IAngularStatic) {
     angular.module('platform-register', ['platform-configuration'])
-        .controller("RegisterCtrl", controller)
+        .controller("RegisterCtrl", navigationController.Controller)
         .directive("passwort", function ():ng.IDirective {
             return {
                 require: 'ngModel',
