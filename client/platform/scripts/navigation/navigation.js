@@ -15,24 +15,29 @@ var navigation;
         angular.element("#navLogout").hide();
     }
     navigation.loggedOut = loggedOut;
+    var NavigationCtrl = (function () {
+        function NavigationCtrl($scope, dispatcher, sessionService) {
+            $scope.onLogout = function () {
+                sessionService.logout();
+            };
+            dispatcher.registerEvent(login.Events.LOGIN_SUCCESSED, function (session) {
+                navigation.loggedIn();
+            });
+            dispatcher.registerEvent(login.Events.LOGOUT_SUCCESSED, function (session) {
+                navigation.loggedOut();
+            });
+            if (sessionService.getCurrentSession()) {
+                navigation.loggedIn();
+            }
+            else {
+                navigation.loggedOut();
+            }
+        }
+        return NavigationCtrl;
+    })();
+    navigation.NavigationCtrl = NavigationCtrl;
 })(navigation || (navigation = {}));
-define(['angular', 'platform-dispatcher', 'platform-login'], function (angular) {
-    angular.module('platform-navigation', ['platform-dispatcher', 'platform-login']).controller("NavigationCtrl", function ($scope, dispatcher, sessionService) {
-        $scope.onLogout = function () {
-            sessionService.logout();
-        };
-        dispatcher.registerEvent(login.Events.LOGIN_SUCCESSED, function (session) {
-            navigation.loggedIn();
-        });
-        dispatcher.registerEvent(login.Events.LOGOUT_SUCCESSED, function (session) {
-            navigation.loggedOut();
-        });
-        if (sessionService.getCurrentSession()) {
-            navigation.loggedIn();
-        }
-        else {
-            navigation.loggedOut();
-        }
-    });
+define(['platform', ], function (platform) {
+    platform.controller("NavigationCtrl", navigation.NavigationCtrl);
 });
 //# sourceMappingURL=navigation.js.map

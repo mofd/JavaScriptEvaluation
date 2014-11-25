@@ -14,11 +14,9 @@ module navigation {
         angular.element("#navRegister").show();
         angular.element("#navLogout").hide();
     }
-}
 
-define(['angular', 'platform-dispatcher', 'platform-login'], function (angular:ng.IAngularStatic) {
-    angular.module('platform-navigation', ['platform-dispatcher', 'platform-login'])
-        .controller("NavigationCtrl", function ($scope, dispatcher:dispatcher.IDispatcher, sessionService:login.ISessionService) {
+    export class NavigationCtrl {
+        constructor($scope, dispatcher:dispatcher.IDispatcher, sessionService:login.ISessionService) {
 
             $scope.onLogout = function ():void {
                 sessionService.logout();
@@ -37,5 +35,11 @@ define(['angular', 'platform-dispatcher', 'platform-login'], function (angular:n
             } else {
                 navigation.loggedOut();
             }
-        });
-});
+        }
+    }
+}
+
+define(['platform', /*'../../../platform/scripts/dispatcher/dispatcher', '../../../platform/scripts/login/login', '../../../platform/scripts/register/register'*/],
+    function (platform:ng.IModule) {
+        platform.controller("NavigationCtrl", navigation.NavigationCtrl);
+    });

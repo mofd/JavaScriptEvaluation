@@ -1,8 +1,8 @@
-///<reference path="../platform.ts"/>
 ///<reference path="../../../typed/angularjs/angular.d.ts"/>
+///<reference path="../../../typed/requirejs/require.d.ts"/>
+
 "use strict";
 
-///<reference path="../../../typed/requirejs/require.d.ts"/>
 
 module dispatcher {
     export interface IEventHandler {
@@ -66,8 +66,7 @@ module dispatcher {
     }
 }
 
-define(['angular'], function(angular:ng.IAngularStatic){
-    angular.module('platform-dispatcher', [])
-        .provider('dispatcher', new dispatcher.DispatcherProvider());
+define(['platform'], function (platform:ng.IModule) {
+    platform.provider('dispatcher', new dispatcher.DispatcherProvider());
 });
 

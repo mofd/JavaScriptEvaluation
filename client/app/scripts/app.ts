@@ -6,9 +6,9 @@
 ///<reference path="../../platform/scripts/login/login.ts"/>
 "use strict";
 
-define(['angular', 'angular-route', 'platform-configuration', 'platform-dispatcher', 'platform-login', 'platform-register'],
-    function (angular:ng.IAngularStatic) {
-        angular.module('app', ['ngRoute', 'platform-configuration', 'platform-dispatcher', 'platform-login', 'platform-register'])
+define(['angular', 'platformInit'],
+    function (angular:ng.IAngularStatic):ng.IModule {
+        return angular.module('app', ['ngRoute', 'platform'])
             .config(function ($routeProvider:ng.route.IRouteProvider) {
                 $routeProvider.when("/login", {
                     controller: 'LoginCtrl',

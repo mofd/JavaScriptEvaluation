@@ -5,8 +5,8 @@
 ///<reference path="../../platform/scripts/dispatcher/dispatcher.ts"/>
 ///<reference path="../../platform/scripts/login/login.ts"/>
 "use strict";
-define(['angular', 'angular-route', 'platform-configuration', 'platform-dispatcher', 'platform-login', 'platform-register'], function (angular) {
-    angular.module('app', ['ngRoute', 'platform-configuration', 'platform-dispatcher', 'platform-login', 'platform-register']).config(function ($routeProvider) {
+define(['angular', 'platformInit'], function (angular) {
+    return angular.module('app', ['ngRoute', 'platform']).config(function ($routeProvider) {
         $routeProvider.when("/login", {
             controller: 'LoginCtrl',
             templateUrl: '../platform/views/login.html'

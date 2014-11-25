@@ -25,7 +25,7 @@ var configuration;
     })();
     _configuration.ConfigurationServiceProvider = ConfigurationServiceProvider;
 })(configuration || (configuration = {}));
-define(['angular'], function (angular) {
-    angular.module('platform-configuration', []).provider('configurationService', new configuration.ConfigurationServiceProvider());
+define(['platform'], function (platform) {
+    platform.provider('configurationService', new configuration.ConfigurationServiceProvider());
 });
 //# sourceMappingURL=configuration.js.map

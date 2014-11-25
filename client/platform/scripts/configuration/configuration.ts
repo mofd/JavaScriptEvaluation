@@ -44,6 +44,6 @@ module configuration {
 
 }
 
-define(['angular'], function(angular:ng.IAngularStatic){
-    angular.module('platform-configuration', []).provider('configurationService', new configuration.ConfigurationServiceProvider());
+define(['platform'], function(platform:ng.IModule){
+    platform.provider('configurationService', new configuration.ConfigurationServiceProvider());
 });
