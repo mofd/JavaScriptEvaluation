@@ -4,7 +4,7 @@
 "use strict";
 
 module register {
-    export var PASSWORT_PATTERN = /^[a-zA-ZäöüÄÖÜß0-9+-\_&\/\(\)\.\,\ ]*$/;
+    var PASSWORT_PATTERN = /^[a-zA-ZäöüÄÖÜß0-9+-\_&\/\(\)\.\,\ ]*$/;
 
     export interface IRegisterScope extends ng.IScope {
         name:string;
@@ -12,9 +12,24 @@ module register {
         mail:string;
         benutzername:string;
         passwort:string;
+        passwortRepeat:string;
         submitted:boolean;
 
         doRegister(valide:boolean):void;
+    }
+
+    export var validatePasswort = function (controller, modelValue, viewValue) {
+        if (controller.$isEmpty(modelValue)) {
+            return false;
+        } else if (PASSWORT_PATTERN.test(viewValue)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    export var validatePasswortRepeat = function (passwort, passwortRepeat) {
+        return angular.equals(passwort, passwortRepeat);
     }
 }
 
@@ -39,20 +54,37 @@ platform.controller("RegisterCtrl", function ($scope:register.IRegisterScope, $h
             $scope.submitted = true;
         }
     };
+
+    $scope.$watch('passwort', function () {
+        $scope.passwortRepeat = null;
+    });
 });
 
 platform.directive("passwort", function ():ng.IDirective {
     return {
         require: 'ngModel',
-        link: function(scope:ng.IScope,
+        link: function (scope:ng.IScope,
                         instanceElement:ng.IAugmentedJQuery,
                         instanceAttributes:ng.IAttributes,
                         controller:any,
                         transclude:ng.ITranscludeFunction) {
-            controller.$validators.passwort = function(modelValue, viewValue){
-                if(controller.$isEmpty(modelValue)){
-                    return false;
-                } else if(register.PASSWORT_PATTERN.test(viewValue)) {
+            controller.$validators.passwort = function (modelValue, viewValue) {
+                return register.validatePasswort(controller, modelValue, viewValue);
+            }
+        }
+    }
+});
+
+platform.directive("passwortRepeat", function ():ng.IDirective {
+    return {
+        require: 'ngModel',
+        link: function (scope:any,
+                        instanceElement:ng.IAugmentedJQuery,
+                        instanceAttributes:ng.IAttributes,
+                        controller:any,
+                        transclude:ng.ITranscludeFunction) {
+            controller.$validators.passwortRepeat = function (modelValue, viewValue) {
+                if (register.validatePasswortRepeat(scope.register.passwort.$viewValue, viewValue)) {
                     return true;
                 } else {
                     return false;

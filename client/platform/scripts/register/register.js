@@ -3,7 +3,21 @@
 "use strict";
 var register;
 (function (register) {
-    register.PASSWORT_PATTERN = /^[a-zA-ZäöüÄÖÜß0-9+-\_&\/\(\)\.\,\ ]*$/;
+    var PASSWORT_PATTERN = /^[a-zA-ZäöüÄÖÜß0-9+-\_&\/\(\)\.\,\ ]*$/;
+    register.validatePasswort = function (controller, modelValue, viewValue) {
+        if (controller.$isEmpty(modelValue)) {
+            return false;
+        }
+        else if (PASSWORT_PATTERN.test(viewValue)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    register.validatePasswortRepeat = function (passwort, passwortRepeat) {
+        return angular.equals(passwort, passwortRepeat);
+    };
 })(register || (register = {}));
 platform.controller("RegisterCtrl", function ($scope, $http, $location, configurationService) {
     $scope.doRegister = function (valide) {
@@ -26,16 +40,26 @@ platform.controller("RegisterCtrl", function ($scope, $http, $location, configur
             $scope.submitted = true;
         }
     };
+    $scope.$watch('passwort', function () {
+        $scope.passwortRepeat = null;
+    });
 });
 platform.directive("passwort", function () {
     return {
         require: 'ngModel',
         link: function (scope, instanceElement, instanceAttributes, controller, transclude) {
             controller.$validators.passwort = function (modelValue, viewValue) {
-                if (controller.$isEmpty(modelValue)) {
-                    return false;
-                }
-                else if (register.PASSWORT_PATTERN.test(viewValue)) {
+                return register.validatePasswort(controller, modelValue, viewValue);
+            };
+        }
+    };
+});
+platform.directive("passwortRepeat", function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, instanceElement, instanceAttributes, controller, transclude) {
+            controller.$validators.passwortRepeat = function (modelValue, viewValue) {
+                if (register.validatePasswortRepeat(scope.register.passwort.$viewValue, viewValue)) {
                     return true;
                 }
                 else {
